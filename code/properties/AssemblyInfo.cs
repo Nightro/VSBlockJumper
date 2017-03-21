@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("VSBlockJumper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("OzmosisGames")]
 [assembly: AssemblyProduct("VSBlockJumper")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
