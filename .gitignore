@@ -1,0 +1,5 @@
+/code/bin
+/code/obj
+/code/.vs
+
+*.user
