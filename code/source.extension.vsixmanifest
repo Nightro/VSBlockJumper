@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="VSBlockJumper.Anthony Reddan.8d7b273d-4993-4a8d-8462-8bfe85646e18" Version="1.0" Language="en-US" Publisher="Anthony Reddan" />
+    <Identity Id="VSBlockJumper.Anthony Reddan.a144b53d-d13f-4ff0-b02c-04a497555738" Version="1.0" Language="en-US" Publisher="Anthony Reddan" />
     <DisplayName>VSBlockJumper</DisplayName>
     <Description>Empty VSIX Project.</Description>
   </Metadata>
@@ -14,7 +14,4 @@
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
   </Prerequisites>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
-  </Assets>
 </PackageManifest>

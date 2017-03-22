@@ -1,0 +1,15 @@
+space
+jump
+navigate
+cursor
+caret
+line
+next
+previous
+blank
+empty
+moveto
+move
+code
+block
+.vsix
