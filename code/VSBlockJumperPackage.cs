@@ -20,6 +20,13 @@ using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Editor;
 
+// TODO: Refactor to be like https://github.com/noahric/alignassignments with keyboard input (copy his way of getting the view too)
+// TODO: Test that selecting the text works... else implement that - might have to do view.Selection.Select(start, end) - might have to include existing selection
+// TODO: Clean up deluge of comments, add file headers/real comments
+// TODO: Remove unused references/using statements
+// TODO: Publish with a basic writeup
+// TODO: Nuget packages my boi - sort er out eh
+
 namespace VSBlockJumper
 {
     /// <summary>
