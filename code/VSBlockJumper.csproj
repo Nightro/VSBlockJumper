@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="Resources\VSBlockJumper.png" />
     <Content Include="Resources\VSBlockJumperPackage.ico" />
     <Content Include="stylesheet.css" />
     <VSCTCompile Include="VSBlockJumperPackage.vsct">
