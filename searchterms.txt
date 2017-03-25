@@ -4,8 +4,6 @@ navigate
 cursor
 caret
 line
-next
-previous
 blank
 empty
 moveto
@@ -13,3 +11,9 @@ move
 code
 block
 .vsix
+up
+previous
+above
+down
+next
+below
