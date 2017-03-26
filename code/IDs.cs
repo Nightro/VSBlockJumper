@@ -8,5 +8,7 @@ namespace VSBlockJumper
         public static readonly Guid PackageCommandSetGUID = new Guid("0e12e5de-582a-4d47-90ba-1b8c8385492a");
         public const int JumpUpCommandID = 0x0100;
         public const int JumpDownCommandID = 4129;
+        public const int JumpSelectUpCommandID = 4130;
+        public const int JumpSelectDownCommandID = 4131;
     }
 }

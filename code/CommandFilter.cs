@@ -57,7 +57,9 @@ namespace VSBlockJumper
                 for (int i = 0; i < prgCmds.Length; ++i)
                 {
                     if (prgCmds[i].cmdID == IDs.JumpUpCommandID ||
-                        prgCmds[i].cmdID == IDs.JumpDownCommandID)
+                        prgCmds[i].cmdID == IDs.JumpDownCommandID ||
+                        prgCmds[i].cmdID == IDs.JumpSelectUpCommandID ||
+                        prgCmds[i].cmdID == IDs.JumpSelectDownCommandID)
                     {
                         prgCmds[i].cmdf = (uint)(OLECMDF.OLECMDF_ENABLED | OLECMDF.OLECMDF_SUPPORTED);
                     }
@@ -81,6 +83,14 @@ namespace VSBlockJumper
                 {
                     Jump(JumpDirection.Down);
                 }
+                else if (nCmdID == IDs.JumpSelectUpCommandID)
+                {
+                    JumpSelect(JumpDirection.Up);
+                }
+                else if (nCmdID == IDs.JumpSelectDownCommandID)
+                {
+                    JumpSelect(JumpDirection.Down);
+                }
 
                 return VSConstants.S_OK;
             }
@@ -88,16 +98,35 @@ namespace VSBlockJumper
             return Next.Exec(ref pguidCmdGroup, nCmdID, nCmdexecopt, pvaIn, pvaOut);
         }
 
+        private void JumpSelect(JumpDirection direction)
+        {
+            VirtualSnapshotPoint start = View.Caret.Position.VirtualBufferPosition;
+            if (!View.Selection.IsEmpty)
+            {
+                start = View.Selection.Start;
+                if (View.Caret.Position.VirtualBufferPosition <= View.Selection.Start)
+                {
+                    start = View.Selection.End;
+                }
+            }
+            
+            Jump(direction);
+            VirtualSnapshotPoint end = View.Caret.Position.VirtualBufferPosition;
+            View.Selection.Select(start, end);
+        }
+
         private void Jump(JumpDirection direction)
         {
-            CaretPosition currentPos = View.Caret.Position;
+            View.Selection.Clear();
+
+            // if the line we begin on is text, navigate to the next blank line
+            // if the line we begin on is blank, and the next line is also blank
+            // then navigate to the next blank line right before a text line
+            // If we find no suitable lines, we navigate to the last line
+            CaretPosition startingPos = View.Caret.Position;
             ITextBuffer buffer = View.TextBuffer;
             ITextSnapshot currentSnapshot = buffer.CurrentSnapshot;
-            SnapshotPoint start = currentPos.BufferPosition;
-
-            // if first line is a blank space
-            // we need to pick the line right before a text line
-            // unless its our line, in which case we can then select the next space line
+            SnapshotPoint start = startingPos.BufferPosition;
 
             ITextSnapshotLine previousLine = start.GetContainingLine();
             bool previousLineIsBlank = string.IsNullOrWhiteSpace(previousLine.GetTextIncludingLineBreak());
@@ -119,7 +148,6 @@ namespace VSBlockJumper
                 }
                 else if (previousLineIsBlank && i != firstLine)
                 {
-                    // we skip blocks of whitespace lines to the last whitespace line above a text block
                     View.Caret.MoveTo(previousLine.Start);
                     break;
                 }
@@ -128,6 +156,12 @@ namespace VSBlockJumper
                 previousLineIsBlank = lineIsBlank;
             }
 
+            if (View.Caret.Position == startingPos)
+            {
+                View.Caret.MoveTo(previousLine.Start);
+            }
+
+            // scroll our view to the new caret position
             View.Caret.EnsureVisible();
         }
     }

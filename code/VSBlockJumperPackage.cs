@@ -7,20 +7,13 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Refactor to be like https://github.com/noahric/alignassignments with keyboard input (copy his way of getting the view too)
-// TODO: Test that selecting the text works... else implement that - might have to do view.Selection.Select(start, end) - might have to include existing selection
 // TODO: Clean up deluge of comments, add file headers/real comments
-// TODO: Remove unused references/using statements
 // TODO: Publish with a basic writeup
-// TODO: Nuget packages my boi - sort er out eh
 // TODO: Select the line at the correct indentation with virtual spaces...
 // TODO: Colorizer, maybe for vscode too
 // TODO: Create a 256x256 icon
 // TODO: Leading whitespace
 // TODO: Work required to support vs v 14
-// TODO: Show caret if it goes off the page
-// TODO: Add separate commands to select I guess
-
 
 namespace VSBlockJumper
 {
