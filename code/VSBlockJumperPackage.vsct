@@ -9,7 +9,7 @@
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT" />
       </Group>
     </Groups>
-      
+
     <Buttons>
       <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" priority="0x0100" type="Button">
         <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
@@ -18,20 +18,20 @@
           <ButtonText>Jump Up</ButtonText>
         </Strings>
       </Button>
-        
+
       <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" priority="0x0100" type="Button">
         <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
           <ButtonText>Jump Down</ButtonText>
         </Strings>
-      </Button>      
+      </Button>
     </Buttons>
   </Commands>
 
   <KeyBindings>
-      <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidVSStd97" key1="VK_NUMPAD8" mod1="CONTROL" />
-      <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidVSStd97" key1="VK_NUMPAD2" mod1="CONTROL" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidVSStd97" key1="VK_NUMPAD8" mod1="CONTROL" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidVSStd97" key1="VK_NUMPAD2" mod1="CONTROL" />
   </KeyBindings>
 
   <Symbols>

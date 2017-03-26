@@ -16,6 +16,8 @@ using System.Runtime.InteropServices;
 // TODO: Select the line at the correct indentation with virtual spaces...
 // TODO: Colorizer, maybe for vscode too
 // TODO: Create a 256x256 icon
+// TODO: Leading whitespace
+// TODO: Work required to support vs v 14
 
 namespace VSBlockJumper
 {
