@@ -1,19 +1,20 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Utilities;
-using Microsoft.VisualStudio.Text;
+using System.ComponentModel.Composition;
 
 namespace VSBlockJumper
 {
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
-    [TextViewRole(PredefinedTextViewRoles.Interactive)]
-    internal class TestViewCreationListener : IWpfTextViewCreationListener
+    [TextViewRole(PredefinedTextViewRoles.Document)]
+    public class VsTextViewCreationListener : IWpfTextViewCreationListener
     {
         [Import(typeof(IVsEditorAdaptersFactoryService))]
         private IVsEditorAdaptersFactoryService m_editorFactory = null;
