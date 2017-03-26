@@ -18,6 +18,9 @@ using System.Runtime.InteropServices;
 // TODO: Create a 256x256 icon
 // TODO: Leading whitespace
 // TODO: Work required to support vs v 14
+// TODO: Show caret if it goes off the page
+// TODO: Add separate commands to select I guess
+
 
 namespace VSBlockJumper
 {

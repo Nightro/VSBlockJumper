@@ -30,8 +30,8 @@
   </Commands>
 
   <KeyBindings>
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidVSStd97" key1="VK_NUMPAD8" mod1="CONTROL" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidVSStd97" key1="VK_NUMPAD2" mod1="CONTROL" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidVSStd97" key1="VK_OEM_4" mod1="ALT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidVSStd97" key1="VK_OEM_6" mod1="ALT" />
   </KeyBindings>
 
   <Symbols>

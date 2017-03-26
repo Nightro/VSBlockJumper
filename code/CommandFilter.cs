@@ -104,7 +104,7 @@ namespace VSBlockJumper
             int startLineNo = currentSnapshot.GetLineNumberFromPosition(start.Position);
             int lineInc = (int)direction;
             int firstLine = startLineNo + lineInc;
-            for (int i = firstLine; i < currentSnapshot.LineCount; i += lineInc)
+            for (int i = firstLine; i >= 0 && i < currentSnapshot.LineCount; i += lineInc)
             {
                 ITextSnapshotLine line = currentSnapshot.GetLineFromLineNumber(i);
                 string lineContents = line.GetTextIncludingLineBreak();
@@ -127,6 +127,8 @@ namespace VSBlockJumper
                 previousLine = line;
                 previousLineIsBlank = lineIsBlank;
             }
+
+            View.Caret.EnsureVisible();
         }
     }
 }
