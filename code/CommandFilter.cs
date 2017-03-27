@@ -1,4 +1,12 @@
-﻿using System;
+﻿//------------------------------------------------------------------------------
+// <copyright file="CommandFilter.cs" company="OzmosisGames">
+//     Copyright (c) Company.  All rights reserved.
+// </copyright>
+// <date>27/03/17</date>
+// <author>Anthony Reddan</author>
+//------------------------------------------------------------------------------
+
+using System;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Editor;
@@ -16,17 +24,16 @@ namespace VSBlockJumper
     internal class TextViewCreationListener : IWpfTextViewCreationListener
     {
         [Import(typeof(IVsEditorAdaptersFactoryService))]
-        private IVsEditorAdaptersFactoryService m_editorFactory = null;
+        private IVsEditorAdaptersFactoryService m_editorAdaptersFactory = null;
+
+        [Import(typeof(ISmartIndentationService))]
+        private ISmartIndentationService m_smartIndentation = null;
 
         public void TextViewCreated(IWpfTextView textView)
         {
-            IVsTextView view = m_editorFactory.GetViewAdapter(textView);
-
-            CommandFilter filter = new CommandFilter(textView);
-
-            IOleCommandTarget next;
-            int result = view.AddCommandFilter(filter, out next);
-
+            CommandFilter filter = new CommandFilter(textView, m_smartIndentation);
+            IVsTextView view = m_editorAdaptersFactory.GetViewAdapter(textView);
+            int result = view.AddCommandFilter(filter, out IOleCommandTarget next);
             if (result == VSConstants.S_OK)
             {
                 filter.Next = next;
@@ -42,12 +49,14 @@ namespace VSBlockJumper
             Down = 1
         }
 
+        private ISmartIndentationService SmartIndentation { get; }
         private IWpfTextView View { get; set; }
         public IOleCommandTarget Next { get; set; }
 
-        public CommandFilter(IWpfTextView view)
+        public CommandFilter(IWpfTextView view, ISmartIndentationService smartIndentation)
         {
             View = view;
+            SmartIndentation = smartIndentation;
         }
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
@@ -100,23 +109,32 @@ namespace VSBlockJumper
 
         private void JumpSelect(JumpDirection direction)
         {
+            // choose our selection start point for the selection right before we jump
             VirtualSnapshotPoint start = View.Caret.Position.VirtualBufferPosition;
             if (!View.Selection.IsEmpty)
             {
+                // we already have a selection, if our caret is at a higher position
+                // than the end of our selection, then our selection starts at our end
+                // point - all other possible cases (i.e. our caret is > selection start)
+                // the selection start is our start point
                 start = View.Selection.Start;
-                if (View.Caret.Position.VirtualBufferPosition <= View.Selection.Start)
+                if (View.Caret.Position.VirtualBufferPosition < View.Selection.End)
                 {
                     start = View.Selection.End;
                 }
             }
             
             Jump(direction);
+
+            // use the new caret position as our selection end point
             VirtualSnapshotPoint end = View.Caret.Position.VirtualBufferPosition;
             View.Selection.Select(start, end);
         }
 
         private void Jump(JumpDirection direction)
         {
+            // as with the standard caret moving operations (click, arrow keys, etc.) 
+            // we clear our current selection when we jump
             View.Selection.Clear();
 
             // if the line we begin on is text, navigate to the next blank line
@@ -129,6 +147,7 @@ namespace VSBlockJumper
             SnapshotPoint start = startingPos.BufferPosition;
 
             ITextSnapshotLine previousLine = start.GetContainingLine();
+            ITextSnapshotLine targetLine = null;
             bool previousLineIsBlank = string.IsNullOrWhiteSpace(previousLine.GetTextIncludingLineBreak());
             int startLineNo = currentSnapshot.GetLineNumberFromPosition(start.Position);
             int lineInc = (int)direction;
@@ -142,13 +161,15 @@ namespace VSBlockJumper
                 {
                     if (!previousLineIsBlank)
                     {
-                        View.Caret.MoveTo(line.Start);
+                        // found our next blank line outside our block
+                        targetLine = line;
                         break;
                     }
                 }
                 else if (previousLineIsBlank && i != firstLine)
                 {
-                    View.Caret.MoveTo(previousLine.Start);
+                    // found our block, go to the blank line right before it
+                    targetLine = previousLine;
                     break;
                 }
 
@@ -156,10 +177,17 @@ namespace VSBlockJumper
                 previousLineIsBlank = lineIsBlank;
             }
 
-            if (View.Caret.Position == startingPos)
+            // we found no suitable line so just choose the last line in the direciton 
+            // we were moving (first or last line of the file)
+            if (targetLine == null)
             {
-                View.Caret.MoveTo(previousLine.Start);
+                targetLine = previousLine;
             }
+
+            // move the caret to the blank line indented with the appropriate number of virtual spaces
+            int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
+            VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+            View.Caret.MoveTo(finalPosition);
 
             // scroll our view to the new caret position
             View.Caret.EnsureVisible();
