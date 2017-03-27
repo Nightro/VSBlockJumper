@@ -13,7 +13,7 @@ namespace VSBlockJumper
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
-    internal class TestViewCreationListener : IWpfTextViewCreationListener
+    internal class TextViewCreationListener : IWpfTextViewCreationListener
     {
         [Import(typeof(IVsEditorAdaptersFactoryService))]
         private IVsEditorAdaptersFactoryService m_editorFactory = null;
