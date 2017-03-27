@@ -9,9 +9,9 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
+// TODO: Work required to support vs v 14 (or even lower)
 // TODO: Publish with a basic writeup
 // TODO: Create a 256x256 icon
-// TODO: Work required to support vs v 14 (or even lower)
 
 namespace VSBlockJumper
 {
