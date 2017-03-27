@@ -2,8 +2,6 @@
 /code/obj
 /code/.vs
 
-*.user
-
 # Ignore NuGet Packages
 *.nupkg
 
