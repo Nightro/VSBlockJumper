@@ -11,10 +11,10 @@ using System.Runtime.InteropServices;
 
 // TODO: Use development to switch to VS 14
 // TODO: Do a concise description and mention inspirations
-// TODO: Publish (incl. social media links)
+// TODO: Finalise manifest
 // TODO: Github release
-// TODO: Post on handmade network forums
-
+// TODO: Publish (incl. social media links)
+// TODO: Post on handmade network forums, social media, work email
 
 namespace VSBlockJumper
 {

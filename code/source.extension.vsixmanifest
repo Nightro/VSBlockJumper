@@ -4,6 +4,8 @@
     <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.0" Language="en-US" Publisher="Anthony Reddan" />
     <DisplayName>VSBlockJumper</DisplayName>
     <Description>Empty VSIX Project.</Description>
+    <Icon>Resources\VSBlockJumperPackage.ico</Icon>
+    <PreviewImage>Resources\VSBlockJumperPackage.ico</PreviewImage>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
