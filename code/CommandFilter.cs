@@ -33,7 +33,8 @@ namespace VSBlockJumper
         {
             CommandFilter filter = new CommandFilter(textView, m_smartIndentation);
             IVsTextView view = m_editorAdaptersFactory.GetViewAdapter(textView);
-            int result = view.AddCommandFilter(filter, out IOleCommandTarget next);
+            IOleCommandTarget next = null;
+            int result = view.AddCommandFilter(filter, out next);
             if (result == VSConstants.S_OK)
             {
                 filter.Next = next;
@@ -137,10 +138,12 @@ namespace VSBlockJumper
             // we clear our current selection when we jump
             View.Selection.Clear();
 
-            // if the line we begin on is text, navigate to the next blank line
-            // if the line we begin on is blank, and the next line is also blank
-            // then navigate to the next blank line right before a text line
-            // If we find no suitable lines, we navigate to the last line
+            // rules:
+            // if the line we begin on contains text, or the following line contains text, 
+            // navigate to the next blank line
+            // if the line we begin on is blank, and the next line is also blank, 
+            // navigate to the line preceding the next line that contains text
+            // if we find no suitable lines, we navigate to the last line
             CaretPosition startingPos = View.Caret.Position;
             ITextBuffer buffer = View.TextBuffer;
             ITextSnapshot currentSnapshot = buffer.CurrentSnapshot;
@@ -161,14 +164,14 @@ namespace VSBlockJumper
                 {
                     if (!previousLineIsBlank)
                     {
-                        // found our next blank line outside our block
+                        // found our next blank line beyond our text block
                         targetLine = line;
                         break;
                     }
                 }
                 else if (previousLineIsBlank && i != firstLine)
                 {
-                    // found our block, go to the blank line right before it
+                    // found our text block, go to the blank line right before it
                     targetLine = previousLine;
                     break;
                 }
@@ -177,7 +180,7 @@ namespace VSBlockJumper
                 previousLineIsBlank = lineIsBlank;
             }
 
-            // we found no suitable line so just choose the last line in the direciton 
+            // we found no suitable line so just choose the last line in the direction 
             // we were moving (first or last line of the file)
             if (targetLine == null)
             {
@@ -186,7 +189,16 @@ namespace VSBlockJumper
 
             // move the caret to the blank line indented with the appropriate number of virtual spaces
             int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
-            VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+            VirtualSnapshotPoint finalPosition;
+            if (virtualSpaces.HasValue)
+            {
+                finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+            }
+            else
+            {
+                // no indentation detected means our line has some 'meaningful' whitespace, go to end instead
+                finalPosition = new VirtualSnapshotPoint(targetLine.End);
+            }
             View.Caret.MoveTo(finalPosition);
 
             // scroll our view to the new caret position

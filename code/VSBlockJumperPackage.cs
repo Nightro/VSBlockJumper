@@ -9,9 +9,14 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Work required to support vs v 14 (or even lower)
-// TODO: Publish with a basic writeup
-// TODO: Create a 256x256 icon
+// TODO: Commit current changes and merge main back into development
+// TODO: Use development to switch to VS 14
+// TODO: Do a gif demoing the functionality
+// TODO: Do a concise description and mention inspirations
+// TODO: Publish
+// TODO: Github release
+// TODO: Post on handmade network forums
+
 
 namespace VSBlockJumper
 {
