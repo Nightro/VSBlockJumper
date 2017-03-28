@@ -1,19 +1,22 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="VSBlockJumperPackage.cs" company="Company">
+// <copyright file="VSBlockJumperPackage.cs" company="OzmosisGames">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
+// <date>27/03/17</date>
+// <author>Anthony Reddan</author>
 //------------------------------------------------------------------------------
 
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Clean up deluge of comments, add file headers/real comments
-// TODO: Publish with a basic writeup
-// TODO: Select the line at the correct indentation with virtual spaces...
-// TODO: Colorizer, maybe for vscode too
-// TODO: Create a 256x256 icon
-// TODO: Leading whitespace
-// TODO: Work required to support vs v 14
+// TODO: Commit current changes and merge main back into development
+// TODO: Use development to switch to VS 14
+// TODO: Do a gif demoing the functionality
+// TODO: Do a concise description and mention inspirations
+// TODO: Publish
+// TODO: Github release
+// TODO: Post on handmade network forums
+
 
 namespace VSBlockJumper
 {
@@ -23,17 +26,5 @@ namespace VSBlockJumper
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class VSBlockJumperPackage : Package
     {
-        public VSBlockJumperPackage()
-        {
-        }
-
-        /// <summary>
-        /// Initialization of the package; this method is called right after the package is sited, so this is the place
-        /// where you can put all the initialization code that rely on services provided by VisualStudio.
-        /// </summary>
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
     }
 }
