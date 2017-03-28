@@ -175,7 +175,7 @@ namespace VSBlockJumper
                     targetLine = previousLine;
                     break;
                 }
-
+                
                 previousLine = line;
                 previousLineIsBlank = lineIsBlank;
             }
@@ -189,18 +189,14 @@ namespace VSBlockJumper
 
             // move the caret to the blank line indented with the appropriate number of virtual spaces
             int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
-            VirtualSnapshotPoint finalPosition;
-            if (virtualSpaces.HasValue)
+            VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+            if (!finalPosition.IsInVirtualSpace)
             {
-                finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
-            }
-            else
-            {
-                // no indentation detected means our line has some 'meaningful' whitespace, go to end instead
+                // our line has some 'meaningful' whitespace, go to end instead
                 finalPosition = new VirtualSnapshotPoint(targetLine.End);
             }
             View.Caret.MoveTo(finalPosition);
-
+            
             // scroll our view to the new caret position
             View.Caret.EnsureVisible();
         }

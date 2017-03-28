@@ -9,11 +9,9 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Commit current changes and merge main back into development
 // TODO: Use development to switch to VS 14
-// TODO: Do a gif demoing the functionality
 // TODO: Do a concise description and mention inspirations
-// TODO: Publish
+// TODO: Publish (incl. social media links)
 // TODO: Github release
 // TODO: Post on handmade network forums
 
