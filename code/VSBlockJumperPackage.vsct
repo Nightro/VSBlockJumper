@@ -45,14 +45,16 @@
     </Buttons>
   </Commands>
 
-  <KeyBindings>
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidVSStd97" key1="VK_OEM_4" mod1="ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidVSStd97" key1="VK_OEM_6" mod1="ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidVSStd97" key1="VK_OEM_4" mod1="SHIFT ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidVSStd97" key1="VK_OEM_6" mod1="SHIFT ALT" />
+   <KeyBindings>
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="ALT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="ALT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="SHIFT ALT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="SHIFT ALT" />
   </KeyBindings>
 
   <Symbols>
+    <GuidSymbol name="guidTextEditor" value="{8b382828-6202-11d1-8870-0000f87579d2}" />
+    
     <GuidSymbol name="VSBlockJumperPackageGUID" value="{c1f1672f-9ea9-46c0-a1a3-78c6daae19ab}" />
 
     <GuidSymbol name="VSBlockJumperPackageCommandSetGUID" value="{0e12e5de-582a-4d47-90ba-1b8c8385492a}">

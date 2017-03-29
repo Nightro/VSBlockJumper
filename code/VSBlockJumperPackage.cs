@@ -9,8 +9,7 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Use development to switch to VS 14 (I may be able to get away with just updating the package file, worth a try anyway)
-// TODO: Finalise manifest
+// TODO: Merge development into main
 // TODO: Github release
 // TODO: Publish (incl. social media links)
 // TODO: Post on handmade network forums, social media, work email

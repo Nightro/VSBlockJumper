@@ -3,16 +3,16 @@
   <Metadata>
     <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.0" Language="en-US" Publisher="Anthony Reddan" />
     <DisplayName>VSBlockJumper</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Description>Enables vertical navigation between and over blocks of code.</Description>
     <Icon>Resources\VSBlockJumperPackage.ico</Icon>
     <PreviewImage>Resources\VSBlockJumperPackage.ico</PreviewImage>
   </Metadata>
   <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,16.0)" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" d:Source="Installed" Version="[14.0]" />
   </Dependencies>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />

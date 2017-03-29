@@ -34,6 +34,7 @@ namespace VSBlockJumper
             CommandFilter filter = new CommandFilter(textView, m_smartIndentation);
             IVsTextView view = m_editorAdaptersFactory.GetViewAdapter(textView);
             IOleCommandTarget next = null;
+            
             int result = view.AddCommandFilter(filter, out next);
             if (result == VSConstants.S_OK)
             {
@@ -148,7 +149,7 @@ namespace VSBlockJumper
             ITextBuffer buffer = View.TextBuffer;
             ITextSnapshot currentSnapshot = buffer.CurrentSnapshot;
             SnapshotPoint start = startingPos.BufferPosition;
-
+            
             ITextSnapshotLine previousLine = start.GetContainingLine();
             ITextSnapshotLine targetLine = null;
             bool previousLineIsBlank = string.IsNullOrWhiteSpace(previousLine.GetTextIncludingLineBreak());
@@ -180,22 +181,30 @@ namespace VSBlockJumper
                 previousLineIsBlank = lineIsBlank;
             }
 
-            // we found no suitable line so just choose the last line in the direction 
-            // we were moving (first or last line of the file)
-            if (targetLine == null)
+            if (targetLine != null)
             {
-                targetLine = previousLine;
+                // move the caret to the blank line indented with the appropriate number of virtual spaces
+                int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
+                VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+                if (!finalPosition.IsInVirtualSpace)
+                {
+                    // our line has some 'meaningful' whitespace, go to end instead
+                    finalPosition = new VirtualSnapshotPoint(targetLine.End);
+                }
+                View.Caret.MoveTo(finalPosition);
             }
-
-            // move the caret to the blank line indented with the appropriate number of virtual spaces
-            int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
-            VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
-            if (!finalPosition.IsInVirtualSpace)
+            else
             {
-                // our line has some 'meaningful' whitespace, go to end instead
-                finalPosition = new VirtualSnapshotPoint(targetLine.End);
+                // we found no suitable line so just choose BOF or EOF depending on the direction we were moving
+                if (direction == JumpDirection.Up)
+                {
+                    View.Caret.MoveTo(previousLine.Start);
+                }
+                else
+                {
+                    View.Caret.MoveTo(previousLine.End);
+                }
             }
-            View.Caret.MoveTo(finalPosition);
             
             // scroll our view to the new caret position
             View.Caret.EnsureVisible();
