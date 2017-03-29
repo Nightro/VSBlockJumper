@@ -15,10 +15,10 @@ Due to existing keybindings within visual studio (and common extensions like res
 
 |        Command        |  Description                                               | Keybinding (Default)       | Keybinding (Ideal) |
 |:--------------------- |:---------------------------------------------------------- |:-------------------------- |:------------------ |
-| `Edit.JumpUp`         | Jump to the closest block edge above the cursor            | `Alt+NumpadSubtract`       | `Ctrl+Up`          |
-| `Edit.JumpDown`       | Jump to the closest block edge below the cursor            | `Alt+NumpadAdd`            | `Ctrl+Down`        |
-| `Edit.JumpSelectUp`   | Jump Up and add the jumped block to the active selection   | `Shift+Alt+NumpadSubtract` | `Ctrl+Shift+Up`    |
-| `Edit.JumpSelectDown` | Jump Down and add the jumped block to the active selection | `Shift+Alt+NumpadAdd`      | `Ctrl+Shift+Down`  |
+| `Edit.JumpUp`         | Jump to the closest block edge above the cursor            | `Alt+Num -`                | `Ctrl+Up`          |
+| `Edit.JumpDown`       | Jump to the closest block edge below the cursor            | `Alt+Num +`                | `Ctrl+Down`        |
+| `Edit.JumpSelectUp`   | Jump Up and add the jumped block to the active selection   | `Shift+Alt+Num -`          | `Ctrl+Shift+Up`    |
+| `Edit.JumpSelectDown` | Jump Down and add the jumped block to the active selection | `Shift+Alt+Num +`          | `Ctrl+Shift+Down`  |
 
 
 # Credits and Thanks

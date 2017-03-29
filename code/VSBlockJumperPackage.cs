@@ -9,14 +9,10 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Github release
-// TODO: Publish (incl. social media links)
-// TODO: Post on handmade network forums, social media, work email
-
 namespace VSBlockJumper
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
+    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(IDs.PackageGUIDString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class VSBlockJumperPackage : Package

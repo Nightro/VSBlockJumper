@@ -1,7 +1,6 @@
 /code/bin
 /code/obj
 /code/.vs
-/source
 
 !*.user
 
