@@ -11,7 +11,7 @@ Jumping takes you outside of the nearest block edge (i.e. the whitespace line ad
 
 ## Commands
 
-Due to existing keybindings within visual studio (and common extensions like resharper or visual assist), I was unable to implement intuitive default keybindings. Instead I've listed my preferences here, and encourage you to change your keybindings to those too.
+Due to existing keybindings within visual studio (and common extensions like resharper or visual assist), I was unable to implement intuitive default keybindings. I've listed my preferences here, and encourage you to update your keybindings to those.
 
 |        Command        |  Description                                               | Keybinding (Default)       | Keybinding (Ideal) |
 |:--------------------- |:---------------------------------------------------------- |:-------------------------- |:------------------ |
