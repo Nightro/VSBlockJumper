@@ -46,10 +46,10 @@
   </Commands>
 
    <KeyBindings>
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="SHIFT ALT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="SHIFT ALT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL SHIFT" />
   </KeyBindings>
 
   <Symbols>
