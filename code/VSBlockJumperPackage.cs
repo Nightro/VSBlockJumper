@@ -9,8 +9,8 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Use development to switch to VS 14
-// TODO: Do a concise description and mention inspirations
+// TODO: Use development to switch to VS 14 (I may be able to get away with just updating the package file, worth a try anyway)
+// TODO: Do a concise description: include command well commands, include navigation helper, space delimited blocks, gif, and finally mention inspirations
 // TODO: Finalise manifest
 // TODO: Github release
 // TODO: Publish (incl. social media links)
