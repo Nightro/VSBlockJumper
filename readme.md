@@ -7,11 +7,11 @@
 
 # Usage
 
-Jumping takes you outside of the nearest block edge (i.e. the whitespace line adjacent to a block). If the cursor reaches BOF or EOF, we jump to the start of the first or last line (respectively).
+Jumping takes you outside of the nearest block edge (i.e. the whitespace line adjacent to a block). If the cursor reaches BOF or EOF, we jump there instead.
 
 ## Commands
 
-Due to existing keybindings within visual studio (and common extensions like resharper or visual assist), I was unable to implement intuitive default keybindings. I've listed what I wanted to use instead here, and encourage you to manually change your keybindings to those.
+Due to existing keybindings within visual studio (and common extensions like resharper or visual assist), I was unable to implement intuitive default keybindings. Instead I've listed my preferences here, and encourage you to change your keybindings to those too.
 
 |        Command        |  Description                                               | Keybinding (Default)       | Keybinding (Ideal) |
 |:--------------------- |:---------------------------------------------------------- |:-------------------------- |:------------------ |
