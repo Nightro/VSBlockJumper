@@ -1,6 +1,6 @@
 # VSBlockJumper
 
- VSBlockJumper is an extension for Visual Studio that enables you to jump vertically over blocks of code, similar to how `Edit.MoveControlLeft` (`Ctrl+Left`) and `Edit.MoveControlRight` (`Ctrl+Right`) jump horizontally.
+ VSBlockJumper is an extension for Visual Studio that enables vertical navigation between and over blocks of code
 
 ![Demo](./media/demo.gif?raw=true "Demo")
 
@@ -13,12 +13,12 @@ Jumping takes you outside of the nearest block edge (i.e. the whitespace line ad
 
 Due to existing keybindings within visual studio (and common extensions like resharper or visual assist), I was unable to implement intuitive default keybindings. I've listed what I wanted to use instead here, and encourage you to manually change your keybindings to those.
 
-|        Command        |  Description                                               | Keybinding (Default) | Keybinding (Ideal) |
-|:--------------------- |:---------------------------------------------------------- |:-------------------- |:------------------ |
-| `Edit.JumpUp`         | Jump to the closest block edge above the cursor            | `Alt+[`              | `Ctrl+Up`          |
-| `Edit.JumpDown`       | Jump to the closest block edge below the cursor            | `Alt+]`              | `Ctrl+Down`        |
-| `Edit.JumpSelectUp`   | Jump Up and add the jumped block to the active selection   | `Shift+Alt+[`        | `Ctrl+Shift+Up`    |
-| `Edit.JumpSelectDown` | Jump Down and add the jumped block to the active selection | `Shift+Alt+]`        | `Ctrl+Shift+Down`  |
+|        Command        |  Description                                               | Keybinding (Default)       | Keybinding (Ideal) |
+|:--------------------- |:---------------------------------------------------------- |:-------------------------- |:------------------ |
+| `Edit.JumpUp`         | Jump to the closest block edge above the cursor            | `Alt+NumpadSubtract`       | `Ctrl+Up`          |
+| `Edit.JumpDown`       | Jump to the closest block edge below the cursor            | `Alt+NumpadAdd`            | `Ctrl+Down`        |
+| `Edit.JumpSelectUp`   | Jump Up and add the jumped block to the active selection   | `Shift+Alt+NumpadSubtract` | `Ctrl+Shift+Up`    |
+| `Edit.JumpSelectDown` | Jump Down and add the jumped block to the active selection | `Shift+Alt+NumpadAdd`      | `Ctrl+Shift+Down`  |
 
 
 # Credits and Thanks

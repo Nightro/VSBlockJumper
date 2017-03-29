@@ -34,6 +34,7 @@ namespace VSBlockJumper
             CommandFilter filter = new CommandFilter(textView, m_smartIndentation);
             IVsTextView view = m_editorAdaptersFactory.GetViewAdapter(textView);
             IOleCommandTarget next = null;
+            
             int result = view.AddCommandFilter(filter, out next);
             if (result == VSConstants.S_OK)
             {
