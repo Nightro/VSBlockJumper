@@ -9,7 +9,6 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Merge development into main
 // TODO: Github release
 // TODO: Publish (incl. social media links)
 // TODO: Post on handmade network forums, social media, work email
