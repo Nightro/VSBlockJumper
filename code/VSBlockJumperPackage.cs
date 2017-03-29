@@ -9,14 +9,11 @@
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 
-// TODO: Commit current changes and merge main back into development
-// TODO: Use development to switch to VS 14
-// TODO: Do a gif demoing the functionality
-// TODO: Do a concise description and mention inspirations
-// TODO: Publish
+// TODO: Use development to switch to VS 14 (I may be able to get away with just updating the package file, worth a try anyway)
+// TODO: Finalise manifest
 // TODO: Github release
-// TODO: Post on handmade network forums
-
+// TODO: Publish (incl. social media links)
+// TODO: Post on handmade network forums, social media, work email
 
 namespace VSBlockJumper
 {
