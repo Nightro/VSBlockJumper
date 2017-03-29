@@ -7,7 +7,7 @@
 
 # Usage
 
-Jumping takes you outside of the nearest block edge (i.e. the whitespace line adjacent to a block). The only exception is when the cursor reaches BOF or EOF, in which case we jump to the start of the first or last line (respectively).
+Jumping takes you outside of the nearest block edge (i.e. the whitespace line adjacent to a block). If the cursor reaches BOF or EOF, we jump to the start of the first or last line (respectively).
 
 ## Commands
 
