@@ -1,6 +1,6 @@
 # VSBlockJumper
 
- VSBlockJumper is an extension for Visual Studio that enables vertical navigation between and over blocks of code
+ VSBlockJumper is an extension for Visual Studio that enables vertical navigation over blocks of code
 
 ![Demo](./media/demo.gif?raw=true "Demo")
 
@@ -17,8 +17,8 @@ Due to existing keybindings within visual studio (and common extensions like res
 |:--------------------- |:---------------------------------------------------------- |:-------------------------- |:------------------ |
 | `Edit.JumpUp`         | Jump to the closest block edge above the cursor            | `Ctrl+Num -`               | `Ctrl+Up`          |
 | `Edit.JumpDown`       | Jump to the closest block edge below the cursor            | `Ctrl+Num +`               | `Ctrl+Down`        |
-| `Edit.JumpSelectUp`   | Jump Up and add the jumped block to the active selection   | `Ctrl+Shift+Num -`         | `Ctrl+Shift+Up`    |
-| `Edit.JumpSelectDown` | Jump Down and add the jumped block to the active selection | `Ctrl+Shift+Num +`         | `Ctrl+Shift+Down`  |
+| `Edit.JumpSelectUp`   | Jump Up and add to the active selection                    | `Ctrl+Shift+Num -`         | `Ctrl+Shift+Up`    |
+| `Edit.JumpSelectDown` | Jump Down and add to the active selection                  | `Ctrl+Shift+Num +`         | `Ctrl+Shift+Down`  |
 
 
 # Credits and Thanks
