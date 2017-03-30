@@ -3,7 +3,7 @@
   <Metadata>
     <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.0.3" Language="en-US" Publisher="Anthony Reddan" />
     <DisplayName>VSBlockJumper</DisplayName>
-    <Description>Enables vertical navigation between and over blocks of code.</Description>
+    <Description xml:space="preserve">Enables vertical navigation over blocks of code by allowing you to jump the cursor to the next blank line adjacent to the block above or below the cursor.</Description>
     <MoreInfo>https://github.com/Nightro/VSBlockJumper</MoreInfo>
     <License>license.txt</License>
     <GettingStartedGuide>https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper</GettingStartedGuide>
