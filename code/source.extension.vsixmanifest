@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.0.1" Language="en-US" Publisher="Anthony Reddan" />
+    <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.0.2" Language="en-US" Publisher="Anthony Reddan" />
     <DisplayName>VSBlockJumper</DisplayName>
     <Description>Enables vertical navigation between and over blocks of code.</Description>
     <MoreInfo>https://github.com/Nightro/VSBlockJumper</MoreInfo>
     <License>license.txt</License>
     <GettingStartedGuide>https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper</GettingStartedGuide>
     <ReleaseNotes>https://github.com/Nightro/VSBlockJumper/releases/tag/v1.0.1</ReleaseNotes>
-    <Icon>Resources\VSBlockJumperPackage.ico</Icon>
-    <PreviewImage>Resources\VSBlockJumperPackage.png</PreviewImage>
     <Tags>code, navigation, jump, block, line, blank, down, up, previous, next, above, below, lines, move, caret, cursor, select, productivity, navigate, selection</Tags>
   </Metadata>
   <Installation>
