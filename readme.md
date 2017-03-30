@@ -1,6 +1,6 @@
 # VSBlockJumper
 
- VSBlockJumper is an extension for Visual Studio that enables vertical navigation over blocks of code
+ VSBlockJumper is an extension for Visual Studio that allows you to jump over blocks of code.
 
 ![Demo](./media/demo.gif?raw=true "Demo")
 
