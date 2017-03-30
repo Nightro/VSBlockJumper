@@ -7,7 +7,9 @@
     <MoreInfo>https://github.com/Nightro/VSBlockJumper</MoreInfo>
     <License>license.txt</License>
     <GettingStartedGuide>https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper</GettingStartedGuide>
-    <ReleaseNotes>https://github.com/Nightro/VSBlockJumper/releases/tag/v1.0.1</ReleaseNotes>
+    <ReleaseNotes>https://github.com/Nightro/VSBlockJumper/releases/tag/v1.0.2</ReleaseNotes>
+    <Icon>Resources\VSBlockJumperPackage.ico</Icon>
+    <PreviewImage>Resources\VSBlockJumperPackage.png</PreviewImage>
     <Tags>code, navigation, jump, block, line, blank, down, up, previous, next, above, below, lines, move, caret, cursor, select, productivity, navigate, selection</Tags>
   </Metadata>
   <Installation>
