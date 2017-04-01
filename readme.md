@@ -20,6 +20,9 @@ Due to existing keybindings within visual studio (and common extensions like res
 | `Edit.JumpSelectUp`   | Jump Up and add to the active selection                    | `Ctrl+Shift+Num -`         | `Ctrl+Shift+Up`    |
 | `Edit.JumpSelectDown` | Jump Down and add to the active selection                  | `Ctrl+Shift+Num +`         | `Ctrl+Shift+Down`  |
 
+## Features
+
+Please don't hesitate to request a feature via [issue](https://github.com/Nightro/VSBlockJumper/issues/new).
 
 # Credits and Thanks
 

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VSBlockJumper")]
-[assembly: AssemblyDescription("VSBlockJumper is an extension for Visual Studio that enables vertical navigation between and over blocks of code")]
+[assembly: AssemblyDescription("VSBlockJumper is an extension for Visual Studio that enables vertical navigation over blocks of code")]
 [assembly: AssemblyCompany("OzmosisGames")]
 [assembly: AssemblyProduct("VSBlockJumper")]
 [assembly: AssemblyCopyright("Copyright © OzmosisGames 2017")]

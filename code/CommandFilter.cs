@@ -7,6 +7,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Editor;
@@ -18,21 +19,43 @@ using Microsoft.VisualStudio.Text;
 
 namespace VSBlockJumper
 {
+    [Export(typeof(EditorOptionDefinition))]
+    [Name(JumpOutsideEdgeOption.OptionName)]
+    public sealed class JumpOutsideEdgeOption : WpfViewOptionDefinition<bool>
+    {
+        public const string OptionName = "VSBlockJumper/JumpOutsideEdge";
+        public readonly static EditorOptionKey<bool> OptionKey = new EditorOptionKey<bool>(JumpOutsideEdgeOption.OptionName);
+
+        public override bool Default { get { return true; } }
+        public override EditorOptionKey<bool> Key { get { return JumpOutsideEdgeOption.OptionKey; } }
+    }
+
+    [Export(typeof(EditorOptionDefinition))]
+    [Name(SkipClosestEdgeOption.OptionName)]
+    public sealed class SkipClosestEdgeOption : WpfViewOptionDefinition<bool>
+    {
+        public const string OptionName = "VSBlockJumper/SkipClosestEdge";
+        public readonly static EditorOptionKey<bool> OptionKey = new EditorOptionKey<bool>(SkipClosestEdgeOption.OptionName);
+
+        public override bool Default { get { return false; } }
+        public override EditorOptionKey<bool> Key { get { return SkipClosestEdgeOption.OptionKey; } }
+    }
+    
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
     internal class TextViewCreationListener : IWpfTextViewCreationListener
     {
         [Import(typeof(IVsEditorAdaptersFactoryService))]
-        private IVsEditorAdaptersFactoryService m_editorAdaptersFactory = null;
+        private IVsEditorAdaptersFactoryService EditorAdaptersFactory { get; set; }
 
         [Import(typeof(ISmartIndentationService))]
-        private ISmartIndentationService m_smartIndentation = null;
+        private ISmartIndentationService SmartIndentation { get; set; }
 
         public void TextViewCreated(IWpfTextView textView)
         {
-            CommandFilter filter = new CommandFilter(textView, m_smartIndentation);
-            IVsTextView view = m_editorAdaptersFactory.GetViewAdapter(textView);
+            CommandFilter filter = new CommandFilter(textView, SmartIndentation);
+            IVsTextView view = EditorAdaptersFactory.GetViewAdapter(textView);
             IOleCommandTarget next = null;
             
             int result = view.AddCommandFilter(filter, out next);
@@ -51,8 +74,24 @@ namespace VSBlockJumper
             Down = 1
         }
 
+        private bool JumpOutsideEdge
+        {
+            get
+            {
+                return View.Options.GetOptionValue(JumpOutsideEdgeOption.OptionKey);
+            }
+        }
+
+        private bool SkipClosestEdge
+        {
+            get
+            {
+                return View.Options.GetOptionValue(SkipClosestEdgeOption.OptionKey);
+            }
+        }
+
+        private IWpfTextView View { get; }
         private ISmartIndentationService SmartIndentation { get; }
-        private IWpfTextView View { get; set; }
         public IOleCommandTarget Next { get; set; }
 
         public CommandFilter(IWpfTextView view, ISmartIndentationService smartIndentation)
@@ -163,33 +202,43 @@ namespace VSBlockJumper
                 bool lineIsBlank = string.IsNullOrWhiteSpace(lineContents);
                 if (lineIsBlank)
                 {
-                    if (!previousLineIsBlank)
+                    if (!previousLineIsBlank && i != firstLine)
                     {
                         // found our next blank line beyond our text block
-                        targetLine = line;
+                        targetLine = (JumpOutsideEdge) ? line : previousLine;
                         break;
                     }
                 }
-                else if (previousLineIsBlank && i != firstLine)
+                else if (!SkipClosestEdge && previousLineIsBlank && i != firstLine)
                 {
                     // found our text block, go to the blank line right before it
-                    targetLine = previousLine;
+                    targetLine = (JumpOutsideEdge) ? previousLine : line;
                     break;
                 }
-                
+
                 previousLine = line;
                 previousLineIsBlank = lineIsBlank;
             }
 
             if (targetLine != null)
             {
-                // move the caret to the blank line indented with the appropriate number of virtual spaces
-                int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
-                VirtualSnapshotPoint finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
-                if (!finalPosition.IsInVirtualSpace)
+                VirtualSnapshotPoint finalPosition;
+                if (JumpOutsideEdge)
                 {
-                    // our line has some 'meaningful' whitespace, go to end instead
-                    finalPosition = new VirtualSnapshotPoint(targetLine.End);
+                    // move the caret to the blank line indented with the appropriate number of virtual spaces
+                    int? virtualSpaces = SmartIndentation.GetDesiredIndentation(View, targetLine);
+                    finalPosition = new VirtualSnapshotPoint(targetLine.Start, virtualSpaces.GetValueOrDefault());
+                    if (!finalPosition.IsInVirtualSpace)
+                    {
+                        // our line has some 'meaningful' whitespace, go to end instead
+                        finalPosition = new VirtualSnapshotPoint(targetLine.End);
+                    }
+                }
+                else
+                {
+                    string lineString = targetLine.GetTextIncludingLineBreak();
+                    int offset = lineString.TakeWhile(c => char.IsWhiteSpace(c)).Count();
+                    finalPosition = new VirtualSnapshotPoint(targetLine, offset);
                 }
                 View.Caret.MoveTo(finalPosition);
             }
@@ -205,7 +254,7 @@ namespace VSBlockJumper
                     View.Caret.MoveTo(previousLine.End);
                 }
             }
-            
+
             // scroll our view to the new caret position
             View.Caret.EnsureVisible();
         }
