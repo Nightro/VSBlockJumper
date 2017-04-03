@@ -19,7 +19,7 @@ Due to existing keybindings within Visual Studio (and common extensions like ReS
 | `Edit.JumpSelectUp`   | Jump Up and add to the active selection         | `Ctrl+Shift+Num -`   | `Ctrl+Shift+Up`    |
 | `Edit.JumpSelectDown` | Jump Down and add to the active selection       | `Ctrl+Shift+Num +`   | `Ctrl+Shift+Down`  |
 
-**NOTE**: When assigning new shortcuts to these commands, be sure to select `Text Editor` in the drop down labelled `Use new shortcut in:` to override existing keybindings within the scope of the Text Editor (Global will not cut it)
+**NOTE**: When assigning shortcuts to these commands, be sure to select `Text Editor` in the drop down labelled `Use new shortcut in:` to override existing keybindings within the scope of the Text Editor (Global will not cut it).
 
 ## Settings
 
