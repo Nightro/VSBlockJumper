@@ -25,10 +25,10 @@ Due to existing keybindings within Visual Studio (and common extensions like ReS
 
 Settings can be found under Tools>Options>VSBlockJumper
 
-| Setting             | Description                                                                                                                   | Default       |
-|:------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:------------- |
-| `JumpOutsideEdge`   | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`        |
-| `SkipClosestEdge`   | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false`       |
+| Setting           | Description                                                                                                                   | Default |
+|:----------------- |:----------------------------------------------------------------------------------------------------------------------------- |:------- |
+| `JumpOutsideEdge` | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`  |
+| `SkipClosestEdge` | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false` |
 
 
 ## Additional Features
