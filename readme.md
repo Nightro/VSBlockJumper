@@ -12,14 +12,14 @@ Jumping takes you outside of the nearest block edge (i.e. the whitespace line ad
 
 Due to existing keybindings within Visual Studio (and common extensions like ReSharper or Visual Assist), I was unable to provide intuitive default keybindings. I've listed my preferences here, and encourage you to update your keybindings under Tools>Options>Environment>Keyboard
 
-**NOTE**: When assigning new shortcuts to these commands, be sure to select `Text Editor` in the drop down labelled `Use new shortcut in:` to override existing keybindings within the scope of the Text Editor (Global will not cut it)
-
 | Command               | Description                                     | Keybinding (Default) | Keybinding (Ideal) |
 |:--------------------- |:----------------------------------------------- |:-------------------- |:------------------ |
 | `Edit.JumpUp`         | Jump to the closest block edge above the cursor | `Ctrl+Num -`         | `Ctrl+Up`          |
 | `Edit.JumpDown`       | Jump to the closest block edge below the cursor | `Ctrl+Num +`         | `Ctrl+Down`        |
 | `Edit.JumpSelectUp`   | Jump Up and add to the active selection         | `Ctrl+Shift+Num -`   | `Ctrl+Shift+Up`    |
 | `Edit.JumpSelectDown` | Jump Down and add to the active selection       | `Ctrl+Shift+Num +`   | `Ctrl+Shift+Down`  |
+
+**NOTE**: When assigning new shortcuts to these commands, be sure to select `Text Editor` in the drop down labelled `Use new shortcut in:` to override existing keybindings within the scope of the Text Editor (Global will not cut it)
 
 ## Settings
 
