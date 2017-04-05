@@ -1,4 +1,4 @@
-# ![VSBlockJumper](./code/Resources/VSBlockJumperPackage.png?raw=true "VSBlockJumper")
+# VSBlockJumper
 
 VSBlockJumper is an extension for Visual Studio that allows you to jump over blocks of code. Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper).
 
@@ -40,3 +40,7 @@ Please don't hesitate to request a feature via [issue](https://github.com/Nightr
 * [Casey Muratory](https://twitter.com/cmuratori) - I first saw this method for navigating code in his Handmade Hero video series
 * [Space Block Jumper](https://marketplace.visualstudio.com/items?itemName=jmfirth.vsc-space-block-jumper) - I use this extension for the same purpose as VSBlockJumper in VSCode
 * [Anthony Reddan](https://twitter.com/AnthonyReddan) - That's me!
+
+# 
+
+![VSBlockJumper](./code/Resources/VSBlockJumperPackage.png?raw=true "VSBlockJumper")
