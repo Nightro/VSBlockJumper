@@ -30,11 +30,6 @@ Settings can be found under Tools>Options>VSBlockJumper
 | `JumpOutsideEdge` | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`  |
 | `SkipClosestEdge` | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false` |
 
-
-## Additional Features
-
-Please don't hesitate to request a feature via [issue](https://github.com/Nightro/VSBlockJumper/issues/new).
-
 # Credits and Thanks
 
 * [Casey Muratory](https://twitter.com/cmuratori) - I first saw this method for navigating code in his Handmade Hero video series
