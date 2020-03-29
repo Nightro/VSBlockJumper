@@ -20,7 +20,7 @@ namespace VSBlockJumper
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionPageGrid), "VSBlockJumper", "General", 113, 116, true)]
     [ProvideProfileAttribute(typeof(OptionPageGrid), "VSBlockJumper", "VSBlockJumper", 113, 113, isToolsOptionPage: true, DescriptionResourceID = 115)]
-    [ProvideAutoLoad(VSConstants.VsEditorFactoryGuid.TextEditor_string)]
+    [ProvideAutoLoad(VSConstants.VsEditorFactoryGuid.TextEditor_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VSBlockJumperPackage : Package
     {
         protected override void Initialize()
