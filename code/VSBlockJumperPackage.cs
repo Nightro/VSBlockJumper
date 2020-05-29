@@ -6,32 +6,35 @@
 // <author>Anthony Reddan</author>
 //------------------------------------------------------------------------------
 
-using Microsoft.VisualStudio.Shell;
+using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Text.Editor;
+using Task = System.Threading.Tasks.Task;
 
 namespace VSBlockJumper
 {
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(IDs.PackageGUIDString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionPageGrid), "VSBlockJumper", "General", 113, 116, true)]
     [ProvideProfileAttribute(typeof(OptionPageGrid), "VSBlockJumper", "VSBlockJumper", 113, 113, isToolsOptionPage: true, DescriptionResourceID = 115)]
     [ProvideAutoLoad(VSConstants.VsEditorFactoryGuid.TextEditor_string, PackageAutoLoadFlags.BackgroundLoad)]
-    public sealed class VSBlockJumperPackage : Package
+    public sealed class VSBlockJumperPackage : AsyncPackage
     {
-        protected override void Initialize()
+        protected async override Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            base.Initialize();
+            await base.InitializeAsync(cancellationToken, progress);
 
             // this sucks - the options page grid needs access to the OptionsService when the options are loaded
             // however, I can't use GetService in the constructor for the OptionPageGrid because the Site is not
             // yet initialised - by the time it IS initialised, we also load our options - I think this is the
             // safest way (if not cleanest) to ensure we have an options service ready to push our data into
-            var componentModel = GetService(typeof(SComponentModel)) as IComponentModel;
+            var componentModel = await GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
             OptionPageGrid.OptionsService = componentModel.GetService<IEditorOptionsFactoryService>();
 
             // this also sucks - here we force the options to be loaded as they are otherwise NOT loaded even when 
