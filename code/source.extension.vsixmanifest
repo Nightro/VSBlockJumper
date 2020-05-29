@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.1.3" Language="en-US" Publisher="Anthony Reddan" />
+        <Identity Id="VSBlockJumper.Anthony Reddan.6d90d2bf-c317-4e02-97e2-ebdc4d657a76" Version="1.1.4" Language="en-US" Publisher="Anthony Reddan" />
         <DisplayName>VSBlockJumper</DisplayName>
         <Description xml:space="preserve">Enables vertical navigation over blocks of code by allowing you to jump to the next blank line (above or below the cursor) adjacent to a block. This is similar to next/previous blank line in Vim.</Description>
         <MoreInfo>https://github.com/Nightro/VSBlockJumper</MoreInfo>

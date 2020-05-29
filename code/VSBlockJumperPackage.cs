@@ -35,6 +35,7 @@ namespace VSBlockJumper
             // yet initialised - by the time it IS initialised, we also load our options - I think this is the
             // safest way (if not cleanest) to ensure we have an options service ready to push our data into
             var componentModel = await GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
             OptionPageGrid.OptionsService = componentModel.GetService<IEditorOptionsFactoryService>();
 
             // this also sucks - here we force the options to be loaded as they are otherwise NOT loaded even when 
