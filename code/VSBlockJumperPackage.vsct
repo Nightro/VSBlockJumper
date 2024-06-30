@@ -1,68 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <Extern href="stdidcmd.h" />
-  <Extern href="vsshlids.h" />
+	<Extern href="stdidcmd.h" />
+	<Extern href="vsshlids.h" />
 
-  <Commands package="VSBlockJumperPackageGUID">
-    <Groups>
-      <Group guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT" />
-      </Group>
-    </Groups>
+	<Commands package="VSBlockJumperPackageGUID">
+		<Groups>
+			<Group guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT" />
+			</Group>
+		</Groups>
 
-    <Buttons>
-      <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" priority="0x0100" type="Button">
-        <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
-        <CommandFlag>CommandWellOnly</CommandFlag>
-        <Strings>
-          <ButtonText>Jump Up</ButtonText>
-        </Strings>
-      </Button>
+		<Buttons>
+			<Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" priority="0x0100" type="Button">
+				<Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Jump Up</ButtonText>
+				</Strings>
+			</Button>
 
-      <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" priority="0x0100" type="Button">
-        <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
-        <CommandFlag>CommandWellOnly</CommandFlag>
-        <Strings>
-          <ButtonText>Jump Down</ButtonText>
-        </Strings>
-      </Button>
+			<Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" priority="0x0100" type="Button">
+				<Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Jump Down</ButtonText>
+				</Strings>
+			</Button>
 
-      <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" priority="0x0100" type="Button">
-        <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
-        <CommandFlag>CommandWellOnly</CommandFlag>
-        <Strings>
-          <ButtonText>Jump Select Up</ButtonText>
-        </Strings>
-      </Button>
+			<Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" priority="0x0100" type="Button">
+				<Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Jump Select Up</ButtonText>
+				</Strings>
+			</Button>
 
-      <Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" priority="0x0100" type="Button">
-        <Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
-        <CommandFlag>CommandWellOnly</CommandFlag>
-        <Strings>
-          <ButtonText>Jump Select Down</ButtonText>
-        </Strings>
-      </Button>
-    </Buttons>
-  </Commands>
+			<Button guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" priority="0x0100" type="Button">
+				<Parent guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperMenuGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Jump Select Down</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
 
-   <KeyBindings>
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL SHIFT" />
-    <KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL SHIFT" />
-  </KeyBindings>
+	<KeyBindings>
+		<KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL" />
+		<KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL" />
+		<KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectUpCommandID" editor="guidTextEditor" key1="VK_SUBTRACT" mod1="CONTROL SHIFT" />
+		<KeyBinding guid="VSBlockJumperPackageCommandSetGUID" id="VSBlockJumperJumpSelectDownCommandID" editor="guidTextEditor" key1="VK_ADD" mod1="CONTROL SHIFT" />
+	</KeyBindings>
 
-  <Symbols>
-    <GuidSymbol name="guidTextEditor" value="{8b382828-6202-11d1-8870-0000f87579d2}" />
+	<Symbols>
+		<GuidSymbol name="guidTextEditor" value="{8b382828-6202-11d1-8870-0000f87579d2}" />
 
-    <GuidSymbol name="VSBlockJumperPackageGUID" value="{c1f1672f-9ea9-46c0-a1a3-78c6daae19ab}" />
+		<GuidSymbol name="VSBlockJumperPackageGUID" value="{c1f1672f-9ea9-46c0-a1a3-78c6daae19ab}" />
 
-    <GuidSymbol name="VSBlockJumperPackageCommandSetGUID" value="{0e12e5de-582a-4d47-90ba-1b8c8385492a}">
-      <IDSymbol name="VSBlockJumperMenuGroup" value="0x1020" />
-      <IDSymbol name="VSBlockJumperJumpUpCommandID" value="0x0100" />
-      <IDSymbol name="VSBlockJumperJumpDownCommandID" value="4129" />
-      <IDSymbol name="VSBlockJumperJumpSelectUpCommandID" value="4130" />
-      <IDSymbol name="VSBlockJumperJumpSelectDownCommandID" value="4131" />
-    </GuidSymbol>
-  </Symbols>
+		<GuidSymbol name="VSBlockJumperPackageCommandSetGUID" value="{0e12e5de-582a-4d47-90ba-1b8c8385492a}">
+			<IDSymbol name="VSBlockJumperMenuGroup" value="0x1020" />
+			<IDSymbol name="VSBlockJumperJumpUpCommandID" value="0x0100" />
+			<IDSymbol name="VSBlockJumperJumpDownCommandID" value="4129" />
+			<IDSymbol name="VSBlockJumperJumpSelectUpCommandID" value="4130" />
+			<IDSymbol name="VSBlockJumperJumpSelectDownCommandID" value="4131" />
+		</GuidSymbol>
+	</Symbols>
 </CommandTable>

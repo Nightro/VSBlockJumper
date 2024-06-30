@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="VSBlockJumper.Anthony Reddan.50CE4E02-71C3-4760-A8DC-8FD6A07FD007" Version="1.1.5" Language="en-US" Publisher="NightroAR" />
+        <Identity Id="VSBlockJumper.Anthony Reddan.50CE4E02-71C3-4760-A8DC-8FD6A07FD007" Version="1.1.6" Language="en-US" Publisher="NightroAR" />
         <DisplayName>VSBlockJumper</DisplayName>
         <Description xml:space="preserve">Enables vertical navigation over blocks of code by allowing you to jump to the next blank line (above or below the cursor) adjacent to a block. This is similar to next/previous blank line in Vim.</Description>
         <MoreInfo>https://github.com/Nightro/VSBlockJumper</MoreInfo>
@@ -15,6 +15,12 @@
     <Installation>
         <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
+            <ProductArchitecture>arm64</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
+            <ProductArchitecture>x86</ProductArchitecture>
         </InstallationTarget>
     </Installation>
     <Dependencies>
