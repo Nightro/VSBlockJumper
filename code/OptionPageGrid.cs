@@ -4,6 +4,13 @@ using Microsoft.VisualStudio.Text.Editor;
 
 namespace VSBlockJumper
 {
+    public enum CollapsedRegionHandling
+    {
+        Skip,
+        ExpandIfContainsBlockEdge,
+        ExpandAlways,
+    }
+
     public class OptionPageGrid : DialogPage
     {
         public static IEditorOptionsFactoryService OptionsService { get; set; }
@@ -37,6 +44,22 @@ namespace VSBlockJumper
             set
             {
                 OptionsService.GlobalOptions.SetOptionValue(SkipClosestEdgeOption.OptionKey, value);
+            }
+        }
+
+        [Category("General")]
+        [DisplayName("Collapsed Regions")]
+        [Description("How should collapsed regions be handled?")]
+        public CollapsedRegionHandling CollapsedRegionHandling
+        {
+            get
+            {
+                return OptionsService.GlobalOptions.GetOptionValue<CollapsedRegionHandling>(CollapsedRegionHandlingOption.OptionKey);
+            }
+
+            set
+            {
+                OptionsService.GlobalOptions.SetOptionValue(CollapsedRegionHandlingOption.OptionKey, value);
             }
         }
     }

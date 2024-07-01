@@ -36,7 +36,8 @@ namespace VSBlockJumper
             // safest way (if not cleanest) to ensure we have an options service ready to push our data into
             var componentModel = await GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
             await JoinableTaskFactory.SwitchToMainThreadAsync();
-            OptionPageGrid.OptionsService = componentModel.GetService<IEditorOptionsFactoryService>();
+            if (componentModel != null)
+                OptionPageGrid.OptionsService = componentModel.GetService<IEditorOptionsFactoryService>();
 
             // this also sucks - here we force the options to be loaded as they are otherwise NOT loaded even when 
             // the package and MEF component ARE loaded - the only time it auto loads is if we go into the options page

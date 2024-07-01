@@ -1,6 +1,6 @@
 # VSBlockJumper
 
-VSBlockJumper is an extension for Visual Studio that allows you to jump over blocks of code. Available in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper).
+VSBlockJumper is an extension for Visual Studio that allows you to jump over blocks of code. Available in the Visual Studio Marketplace for [VS2019 and lower](https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper) as well as [VS2022 and higher](https://marketplace.visualstudio.com/items?itemName=NightroAR.VSBlockJumper2022Plus).
 
 ![Demo](./media/demo.gif?raw=true "Demo")
 
@@ -25,10 +25,11 @@ Due to existing keybindings within Visual Studio (and common extensions like ReS
 
 Settings can be found under Tools>Options>VSBlockJumper
 
-| Setting           | Description                                                                                                                   | Default |
-|:----------------- |:----------------------------------------------------------------------------------------------------------------------------- |:------- |
-| `JumpOutsideEdge` | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`  |
-| `SkipClosestEdge` | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false` |
+| Setting                   | Description                                                                                                                   | Default |
+|:-----------------         |:----------------------------------------------------------------------------------------------------------------------------- |:------- |
+| `CollapsedRegionHandling` | How should collapsed regions be handled?                                                                                      | `Skip`  |
+| `JumpOutsideEdge`         | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`  |
+| `SkipClosestEdge`         | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false` |
 
 # Credits and Thanks
 

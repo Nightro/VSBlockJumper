@@ -16,6 +16,8 @@ using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Utilities;
 using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Outlining;
+using System.Collections.Generic;
 
 namespace VSBlockJumper
 {
@@ -40,7 +42,18 @@ namespace VSBlockJumper
         public override bool Default { get { return false; } }
         public override EditorOptionKey<bool> Key { get { return SkipClosestEdgeOption.OptionKey; } }
     }
-    
+
+    [Export(typeof(EditorOptionDefinition))]
+    [Name(OptionName)]
+    public sealed class CollapsedRegionHandlingOption : WpfViewOptionDefinition<CollapsedRegionHandling>
+    {
+        public const string OptionName = "VSBlockJumper/ExpandCollpasedRegions";
+        public readonly static EditorOptionKey<CollapsedRegionHandling> OptionKey = new EditorOptionKey<CollapsedRegionHandling>(OptionName);
+
+        public override CollapsedRegionHandling Default { get { return CollapsedRegionHandling.Skip; } }
+        public override EditorOptionKey<CollapsedRegionHandling> Key { get { return OptionKey; } }
+    }
+
     [Export(typeof(IWpfTextViewCreationListener))]
     [ContentType("text")]
     [TextViewRole(PredefinedTextViewRoles.Interactive)]
@@ -52,16 +65,18 @@ namespace VSBlockJumper
         [Import(typeof(ISmartIndentationService))]
         private ISmartIndentationService SmartIndentation { get; set; }
 
+        [Import(typeof(IOutliningManagerService))]
+        private IOutliningManagerService OutliningManagerService { get; set; }
+
         public void TextViewCreated(IWpfTextView textView)
         {
-            CommandFilter filter = new CommandFilter(textView, SmartIndentation);
+            IOutliningManager outliningManager = OutliningManagerService.GetOutliningManager(textView);
+            CommandFilter filter = new CommandFilter(textView, SmartIndentation, outliningManager);
             IVsTextView view = EditorAdaptersFactory.GetViewAdapter(textView);
 
             if (view != null)
             {
-                IOleCommandTarget next = null;
-
-                int result = view.AddCommandFilter(filter, out next);
+                int result = view.AddCommandFilter(filter, out IOleCommandTarget next);
                 if (result == VSConstants.S_OK)
                 {
                     filter.Next = next;
@@ -94,14 +109,24 @@ namespace VSBlockJumper
             }
         }
 
+        private CollapsedRegionHandling CollapsedRegionHandling
+        {
+            get
+            {
+                return View.Options.GetOptionValue(CollapsedRegionHandlingOption.OptionKey);
+            }
+        }
+
         private IWpfTextView View { get; }
         private ISmartIndentationService SmartIndentation { get; }
+        private IOutliningManager OutliningManager { get; }
         public IOleCommandTarget Next { get; set; }
 
-        public CommandFilter(IWpfTextView view, ISmartIndentationService smartIndentation)
+        public CommandFilter(IWpfTextView view, ISmartIndentationService smartIndentation, IOutliningManager outliningManager)
         {
             View = view;
             SmartIndentation = smartIndentation;
+            OutliningManager = outliningManager;
         }
 
         public int QueryStatus(ref Guid pguidCmdGroup, uint cCmds, OLECMD[] prgCmds, IntPtr pCmdText)
@@ -192,7 +217,33 @@ namespace VSBlockJumper
             ITextBuffer buffer = View.TextBuffer;
             ITextSnapshot currentSnapshot = buffer.CurrentSnapshot;
             SnapshotPoint start = startingPos.BufferPosition;
-            
+
+            // collect collapsed regious so we can skip them
+            SnapshotSpan regionSearchArea;
+            if (direction == JumpDirection.Up)
+            {
+                regionSearchArea = new SnapshotSpan(currentSnapshot, 0, start);
+            }
+            else
+            {
+                regionSearchArea = new SnapshotSpan(currentSnapshot, start, currentSnapshot.Length - start);
+            }
+
+            // pre-collect the line numbers so we can just check those in the loop
+            IEnumerable<ICollapsed> collapsedRegions = OutliningManager.GetCollapsedRegions(regionSearchArea);
+            List<(ICollapsed, int, int)> collapsedRegionLineSpans = new List<(ICollapsed, int, int)>(32);
+            foreach (ICollapsed collapsedRegion in collapsedRegions)
+            {
+                SnapshotSpan regionSpan = collapsedRegion.Extent.GetSpan(currentSnapshot);
+                collapsedRegionLineSpans.Add((collapsedRegion, regionSpan.Start.GetContainingLine().LineNumber, regionSpan.End.GetContainingLine().LineNumber));
+            }
+
+            // regions are already sorted linearly for jump down, just reverse for up
+            if (direction == JumpDirection.Up)
+            {
+                collapsedRegionLineSpans.Reverse();
+            }
+
             ITextSnapshotLine previousLine = start.GetContainingLine();
             ITextSnapshotLine targetLine = null;
             bool previousLineIsBlank = string.IsNullOrWhiteSpace(previousLine.GetTextIncludingLineBreak());
@@ -201,6 +252,39 @@ namespace VSBlockJumper
             int firstLine = startLineNo + lineInc;
             for (int i = firstLine; i >= 0 && i < currentSnapshot.LineCount; i += lineInc)
             {
+                if (CollapsedRegionHandling != CollapsedRegionHandling.ExpandIfContainsBlockEdge)
+                {
+                    for (int j = 0; j < collapsedRegionLineSpans.Count; ++j)
+                    {
+                        (ICollapsed collapsedRegion, int regionStartLine, int regionEndLine) = collapsedRegionLineSpans[j];
+                        if (i > regionStartLine && i <= regionEndLine)
+                        {
+                            if (CollapsedRegionHandling == CollapsedRegionHandling.ExpandAlways)
+                            {
+                                // if we expand collapsed regions, remove it, expand, and continue on as normal
+                                collapsedRegionLineSpans.RemoveAt(j);
+                                OutliningManager.Expand(collapsedRegion);
+                                break;
+                            }
+
+                            // skip to the line at the end of the region and go next
+                            int nextLine = regionStartLine;
+                            if (direction == JumpDirection.Down)
+                            {
+                                nextLine = regionEndLine + 1;
+                            }
+
+                            // this is kind of an annoying edge case to handle
+                            if (i == firstLine)
+                            {
+                                firstLine = nextLine;
+                            }
+
+                            i = nextLine;
+                        }
+                    }
+                }
+
                 ITextSnapshotLine line = currentSnapshot.GetLineFromLineNumber(i);
                 string lineContents = line.GetTextIncludingLineBreak();
                 bool lineIsBlank = string.IsNullOrWhiteSpace(lineContents);
@@ -244,6 +328,20 @@ namespace VSBlockJumper
                     int offset = lineString.TakeWhile(c => char.IsWhiteSpace(c)).Count();
                     finalPosition = new VirtualSnapshotPoint(targetLine, offset);
                 }
+
+                // if our block edge resides inside a region - expand it
+                if (CollapsedRegionHandling == CollapsedRegionHandling.ExpandIfContainsBlockEdge)
+                {
+                    for (int j = 0; j < collapsedRegionLineSpans.Count; ++j)
+                    {
+                        (ICollapsed collapsedRegion, int regionStartLine, int regionEndLine) = collapsedRegionLineSpans[j];
+                        if (targetLine.LineNumber > regionStartLine && targetLine.LineNumber <= regionEndLine)
+                        {
+                            OutliningManager.Expand(collapsedRegion);
+                        }
+                    }
+                }
+
                 View.Caret.MoveTo(finalPosition);
             }
             else
