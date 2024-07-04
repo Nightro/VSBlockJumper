@@ -4,11 +4,11 @@ VSBlockJumper is an extension for Visual Studio that allows you to jump over blo
 
 ![Demo](./media/demo.gif?raw=true "Demo")
 
-# Usage
+## Usage
 
 Jumping takes you outside of the nearest block edge (i.e. the whitespace line adjacent to a block). If the cursor reaches BOF or EOF, we jump there instead.
 
-## Commands
+### Commands
 
 Due to existing keybindings within Visual Studio (and common extensions like ReSharper or Visual Assist), I was unable to provide intuitive default keybindings. I've listed my preferences here, and encourage you to update your keybindings under Tools>Options>Environment>Keyboard
 
@@ -21,7 +21,7 @@ Due to existing keybindings within Visual Studio (and common extensions like ReS
 
 **NOTE**: When assigning shortcuts to these commands, be sure to select `Text Editor` in the drop down labelled `Use new shortcut in:` to override existing keybindings within the scope of the Text Editor (Global will not cut it).
 
-## Settings
+### Settings
 
 Settings can be found under Tools>Options>VSBlockJumper
 
@@ -31,7 +31,7 @@ Settings can be found under Tools>Options>VSBlockJumper
 | `JumpOutsideEdge`         | If enabled, the cursor will jump outside of the block edge (blank line), otherwise it jumps inside the block edge (text line) | `true`  |
 | `SkipClosestEdge`         | If enabled, the cursor will only jump to the far edge of a block, otherwise it visits every edge of a block                   | `false` |
 
-# Credits and Thanks
+## Credits and Thanks
 
 * [Casey Muratory](https://twitter.com/cmuratori) - I first saw this method for navigating code in his Handmade Hero video series
 * [Space Block Jumper](https://marketplace.visualstudio.com/items?itemName=jmfirth.vsc-space-block-jumper) - I use this extension for the same purpose as VSBlockJumper in VSCode
